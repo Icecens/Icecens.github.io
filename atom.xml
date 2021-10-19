@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2021-10-19T02:15:51.734Z</updated>
+  <updated>2021-10-19T01:41:26.225Z</updated>
   <id>/</id>
   
   <author>
@@ -15,31 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>行哥，我的行哥</title>
-    <link href="/2021/10/23/%E8%A1%8C%E5%93%A5%EF%BC%8C%E6%88%91%E7%9A%84%E8%A1%8C%E5%93%A5/"/>
-    <id>/2021/10/23/行哥，我的行哥/</id>
-    <published>2021-10-23T09:26:16.000Z</published>
-    <updated>2021-10-19T02:15:51.734Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;行哥，我的行哥！！&lt;/p&gt;
-&lt;p&gt;yyds！！&lt;/p&gt;
-&lt;p&gt;hexo真拉说实话&lt;/p&gt;
-
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Hello World</title>
@@ -60,171 +35,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo-Theme-Sakura</title>
-    <link href="/2018/12/12/Hexo-Theme-Sakura/"/>
-    <id>/2018/12/12/Hexo-Theme-Sakura/</id>
-    <published>2018-12-12T14:16:01.000Z</published>
-    <updated>2020-03-15T19:41:30.000Z</updated>
-    
-    <summary type="html">
-    
-      hexo-sakura主题使用教程
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="web" scheme="/tags/web/"/>
-    
-      <category term="悦读" scheme="/tags/%E6%82%A6%E8%AF%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Example Post using Keynote Layout</title>
-    <link href="/2015/07/09/js-module-7day/"/>
-    <id>/2015/07/09/js-module-7day/</id>
-    <published>2015-07-08T16:00:00.000Z</published>
-    <updated>2021-09-28T01:41:21.496Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;下滑这里查看更多内容&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;7月9日，我在公司内部进行了名为「JavaScript 模块化七日谈」分享，并将该 Slides 分享到了微博上。出乎意料地，这篇微博先后被 @JS小组 @尤小右 @寸志 等近
-        
-      
-    
-    </summary>
-    
-    
-      <category term="前端开发" scheme="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="JavaScript" scheme="/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Example Post With Default Header Image</title>
-    <link href="/2015/04/14/unix-linux-note/"/>
-    <id>/2015/04/14/unix-linux-note/</id>
-    <published>2015-04-13T16:00:00.000Z</published>
-    <updated>2021-09-28T01:41:21.496Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;This document is not completed and will be updated anytime.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;Catagory&quot;&gt;&lt;a href=&quot;#Catagory&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="OS" scheme="/tags/OS/"/>
-    
-      <category term="Unix" scheme="/tags/Unix/"/>
-    
-      <category term="Linux" scheme="/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Example Post</title>
-    <link href="/2014/09/22/js-version/"/>
-    <id>/2014/09/22/js-version/</id>
-    <published>2014-09-21T16:00:00.000Z</published>
-    <updated>2021-09-28T01:41:21.496Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;JavaScript 有着很奇怪的命名史。&lt;/p&gt;
-&lt;p&gt;1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了
-        
-      
-    
-    </summary>
-    
-    
-      <category term="前端开发" scheme="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="JavaScript" scheme="/tags/JavaScript/"/>
-    
-      <category term="翻译" scheme="/tags/%E7%BF%BB%E8%AF%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Welcome to Hux Blog</title>
-    <link href="/2014/01/29/hello-2015/"/>
-    <id>/2014/01/29/hello-2015/</id>
-    <published>2014-01-29T04:00:00.000Z</published>
-    <updated>2021-09-28T01:41:21.496Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;Hux 的 Blog
-        
-      
-    
-    </summary>
-    
-    
-      <category term="生活" scheme="/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Example Post with Code Highlight</title>
-    <link href="/2013/05/25/js-module-loader/"/>
-    <id>/2013/05/25/js-module-loader/</id>
-    <published>2013-05-24T16:00:00.000Z</published>
-    <updated>2021-09-28T01:41:21.496Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Foreword&quot;&gt;&lt;a href=&quot;#Foreword&quot; class=&quot;headerlink&quot; title=&quot;Foreword&quot;&gt;&lt;/a&gt;Foreword&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Here comes
-        
-      
-    
-    </summary>
-    
-    
-      <category term="前端开发" scheme="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="JavaScript" scheme="/tags/JavaScript/"/>
     
   </entry>
   
