@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Hello World | Icecens&#39; blog</title>
+  <title itemprop="name">软件设计模式与体系结构 | Icecens&#39; blog</title>
   
     <link rel="shortcut icon" href="http://raw.githubusercontent.com/Icecens/ImageHost/main/misc/yy-avatar.jpeg">
   
@@ -374,27 +374,172 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
           <header class="entry-header">
-            <h1 class="entry-title">Hello World</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2021-10-19&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+            <h1 class="entry-title">软件设计模式与体系结构</h1>
+            <p class="entry-census">Icecens&nbsp;·&nbsp;2021-9-7&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
 
             <hr>
           </header>
         
         <div class="entry-content">
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+          <p>software design pattern &amp; software architecture</p>
+<h2 id="高频点"><a href="#高频点" class="headerlink" title="高频点"></a>高频点</h2><p>依赖倒转/倒置、面向接口/抽象编程、要依赖于抽象而非具体，几乎每章都出现，典型例子用接口声明对象接收创建的实现类对象</p>
+<p>依赖倒转：依赖倒置原则（Dependence Inversion Principle）是程序要依赖于抽象接口，不要依赖于具体实现。简单的说就是要求对抽象进行编程，不要对实现进行编程（面向接口编程），这样就降低了客户与实现模块间的耦合</p>
+<ul>
+<li>面向过程的开发，上层调用下层，上层依赖于下层，当下层剧烈变动时上层也要跟着变动，这就会导致模块的复用性降低而且大大提高了开发的成本。</li>
+<li>面向对象的开发很好的解决了这个问题，一般情况下抽象的变化概率很小，让用户程序依赖于抽象，实现的细节也依赖于抽象。即使实现细节不断变动，只要抽象不变，客户程序就不需要变化。这大大降低了客户程序与实现细节的耦合度</li>
+</ul>
+<h1 id="创建型DP"><a href="#创建型DP" class="headerlink" title="创建型DP"></a>创建型DP</h1><p>creational design pattern</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>factory pattern</p>
+<p>所有东西都放一个类的最大缺点：可扩展性差，以后加一行代码都要改不同模块的一堆代码，因为不能保证每句都是对的，解决方法是使用一些架构/模式，如mvc，哪个模块出错/需要扩展就改哪里</p>
+<p>开闭原则：对模块行为/功能扩展时开放的，对修改是封闭的（扩展时不允许修改已存在的类的源代码）</p>
+<ul>
+<li>增加一条if语句算满足开闭原则吗？知乎/问老师</li>
+</ul>
+<p>该模式就是对创建对象过程的抽象。要创建的类称为产品类，每个产品类都有与之对应的工厂类/方法来创建它们。分为两种具体模式</p>
+<ul>
+<li>简单工厂模式：一个工厂类里定义所有创建对象的方法，可扩展性差，如果要增加一个产品需要修改和编译工厂类</li>
+<li>正常工厂模式：每个产品类对应一个工厂类，工厂类也形成层次类</li>
+</ul>
+<p>作用</p>
+<ol>
+<li>本质就是对获取对象过程的抽象</li>
+<li>希望能够创建一个对象，但创建过程比较复杂，希望对外隐藏这些细节，于是用工厂来创建</li>
+<li>另一种说法是解耦</li>
+<li>（抽象、隐藏/屏蔽、解耦）</li>
+</ol>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>abstract factory</p>
+<p>当层次类具有类似结构时，仿照该结构创建对应的工厂层次类，根据需要来调用抽象工厂的实现类中的构造方法</p>
+<ul>
+<li>核心思想是抽象，其本质是找相同属性/特征</li>
+</ul>
+<p>eg 三类房子，每种房子有super、medium两种户型（该模式只能两个属性/属性维度，房子类型、房子大小/户型）</p>
+<ul>
+<li>代码中的一个设计，超类中创建子类对象（2021年9月9日 17:01:23 这个时间附近的没听）</li>
+</ul>
+<h1 id="结构型DP"><a href="#结构型DP" class="headerlink" title="结构型DP"></a>结构型DP</h1><p>structural</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>adapter</p>
+<p>（本章接口指开放方法的类）</p>
+<p>该模式作用/目的主要是改变或扩展接口。拿到原有的接口、需求接口，写一个类充当适配器/中介，去继承/调用原有接口，实现新接口并把这个接口开放给客户类。具体分为两种模式</p>
+<ul>
+<li>类适配器模式：适用于单接口，适配器类直接继承原接口</li>
+<li>对象适配器模式：适用于多个接口的聚合、改装，在适配器类中添加原接口成员，即通过引用来实现改装或聚合</li>
+</ul>
+<p>两种均需要开放出target新接口！</p>
+<p><img src="https://raw.githubusercontent.com/Icecens/ImageHost/main/img/202109292111697.png" alt="image-20210929211136614"></p>
+<h2 id="桥模式"><a href="#桥模式" class="headerlink" title="桥模式"></a>桥模式</h2><p>bridge</p>
+<p>桥模式 基于面向抽象/接口编程，将一个有两种属性（eg，coffe的cup size和种类）的类分为抽象、实现两个层次类，客户程序调用抽象层，抽象层引用实现层的接口对象；责任分离，实现接口提供原始操作（dao等），抽象层提供高级业务逻辑</p>
+<ul>
+<li>另一个说法：尽量依赖于抽象而不是依赖于具体</li>
+</ul>
+<p>好处：改善扩展性</p>
+<p>何时使用：想避免抽象层次类和实现层次类的永久耦合时，eg当实现层必须在运行时或转换时选择对象</p>
+<p>实例</p>
+<p><img src="https://raw.githubusercontent.com/Icecens/ImageHost/main/img/202109271726717.png" alt="image-20210927172553631"></p>
+<p>几个特点</p>
+<ul>
+<li>面向接口编程，实现层次类在右边，左边的实现类中方法更抽象</li>
+<li>两个层次类通过引用的方式低耦合，抽象层次类的接口中有一个实现层次类的接口成员</li>
+<li>调用时，先创建实现层次类对象并用接口接收；所以可以根据这个顺序来决定谁是抽象层、谁是实现层</li>
+<li>作业那个例子，writer直接操作数据库，所以作为实现层</li>
+</ul>
+<h1 id="行为型DP"><a href="#行为型DP" class="headerlink" title="行为型DP"></a>行为型DP</h1><p>behavioral</p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>strategy</p>
+<p>所有方法都放主类里，缺点</p>
+<ul>
+<li>增删改某算法，需要重新编译整个类</li>
+<li>可复用性差</li>
+</ul>
+<p>实现了依赖倒转</p>
+<p>Context上下文类的两种功能</p>
+<ul>
+<li>将所有数据一次性传递给策略类</li>
+<li>将自己作为对象传给策略类，供策略类调用</li>
+<li>（其实应该还有：解耦客户类和策略类（为什么要？只有策略类需要context对象时才需要吧？），自己和策略类高耦合）</li>
+</ul>
+<p>eg</p>
+<p><img src="https://raw.githubusercontent.com/Icecens/ImageHost/main/img/202109272128712.png" alt="image-20210927212802641"></p>
+<h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><p>state</p>
+<p>和strategy类似，只是把策略类换成状态类，使用场景不同</p>
+<p>Context类作用</p>
+<ul>
+<li>定义客户程序需要的接口</li>
+<li>保持对状态类型State的引用，Context对象包含当前状态子类对象</li>
+<li>可以包含部分业务逻辑</li>
+</ul>
+<p>可以由Context对象或者State层次类来决定状态的转换</p>
+<p>eg</p>
+<p><img src="https://raw.githubusercontent.com/Icecens/ImageHost/main/img/202109280924412.png" alt="image-20210928092418311"></p>
+<h2 id="访问者"><a href="#访问者" class="headerlink" title="访问者"></a>访问者</h2><p>visitor</p>
+<p>两个类将自身对象互相传递的好处：调用方便</p>
+<p>eg 简单情况，无visitor层次类，无复合结构</p>
+<p><img src="https://raw.githubusercontent.com/Icecens/ImageHost/main/img/202109281638525.png" alt="image-20210928163839319"></p>
+<p>eg 有Visitor层次类，有复合结构的visitor pattern</p>
+<p><img src="https://raw.githubusercontent.com/Icecens/ImageHost/main/img/202109290956348.png" alt="image-20210929095555247"></p>
+<p>重点（大概率要考）</p>
+<ul>
+<li>accept方法：每个accept里要指定访问方法，这个模式就是这样关联两个层次类、实现自动访问的</li>
+<li>ObjectStructure类：实现批量访问</li>
+</ul>
+<h2 id="中介者"><a href="#中介者" class="headerlink" title="中介者"></a>中介者</h2><p>mediator</p>
+<p>当架构中类较少时，类可以直接通信（如context和strategy、context和state），但当类很多时，直接通信会混乱，因此需要一个中介类/中介层次类，来实现参与者类的类间通信，禁止原有的类间直接通信</p>
+<ul>
+<li>一个很好的类比：机场</li>
+</ul>
+<p>优点</p>
+<ul>
+<li>提高参与者类的复用性</li>
+<li>参与者的关系可由中介者调节</li>
+<li>有利于参与者类的单元测试</li>
+<li>有利于参与者类的修改，低耦合使得修改后只需编译一个类，不影响其他</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>影响性能</li>
+</ul>
+<h2 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h2><p>observer</p>
+<h1 id="SA"><a href="#SA" class="headerlink" title="SA"></a>SA</h1><p>software architecture</p>
+<h2 id="MVC-SA"><a href="#MVC-SA" class="headerlink" title="MVC SA"></a>MVC SA</h2><p>把所有方法放一个类的缺点</p>
+<ul>
+<li>可扩展性差，加入新的方法必须修改这个类</li>
+<li>可维护性差，修改类某个方法必须重新编译整个类</li>
+</ul>
+<p>MVC：<br>the Model (business logic),<br>the View (user interface), and<br>the Controller (user input).</p>
+<h2 id="层次SA"><a href="#层次SA" class="headerlink" title="层次SA"></a>层次SA</h2><p>Layered</p>
+<p>系统按层次组织，每一层为上一层提供服务，并调用下一层提供的服务/充当下一层的客户，最底层通常是硬件</p>
+<p>拓扑限制：不允许隔层调用，交互仅仅在相邻层进行；不允许反方向调用</p>
+<p><strong>区别</strong>：见ppt</p>
+<h2 id="主程序-子程序SA-面向对象SA"><a href="#主程序-子程序SA-面向对象SA" class="headerlink" title="主程序-子程序SA 面向对象SA"></a>主程序-子程序SA 面向对象SA</h2><p>均属于调用-返回架构</p>
+<h2 id="批处理SA"><a href="#批处理SA" class="headerlink" title="批处理SA"></a>批处理SA</h2><p>属于数据流风格SA</p>
+<p>就是os里的串行，数据成批传输、串行顺序处理</p>
+<p>90-92互联网诞生，这3种SA都是非互联网架构</p>
+<p>非结构化编程：有goto的</p>
+<p>缺点（都是goto的锅）</p>
+<ul>
+<li>逻辑难分析</li>
+<li>难修改</li>
+<li>难合并</li>
+<li>难测试</li>
+</ul>
+<p>结构化编程：</p>
+<p>数据共享：相同变量被多个程序/函数反复调用，是为了节省内存（上世纪60-70年代计算机性能差），面向对象编程取消了数据共享</p>
+<h2 id="管道-过滤器SA"><a href="#管道-过滤器SA" class="headerlink" title="管道-过滤器SA"></a>管道-过滤器SA</h2><p>pipe-filter, 属于数据流风格SA</p>
+<p>易复用、易扩展、易修改：均因为过滤器间互不调用</p>
+<h2 id="事件系统-基于事件的SA"><a href="#事件系统-基于事件的SA" class="headerlink" title="事件系统/基于事件的SA"></a>事件系统/基于事件的SA</h2><p>event sys</p>
+<p>observer/observable模式就是小型的event sys</p>
+<h2 id="客户端-服务器SA"><a href="#客户端-服务器SA" class="headerlink" title="客户端-服务器SA"></a>客户端-服务器SA</h2><p>client-server</p>
+<p>互操作性interoperablility: 两个网站互相访问、协同工作？</p>
+<p>动机</p>
+<ul>
+<li>在多个用户之间共享资源</li>
+<li>客户端软件与最终用户交互</li>
+<li>服务器软件与共享资源交互</li>
+</ul>
+<h2 id="p2p"><a href="#p2p" class="headerlink" title="p2p"></a>p2p</h2><p>第二代 gnutella 缺点：节点多时资源难找到</p>
+<ul>
+<li>传统的纯P2P体系结构在运行中存在很多问题,主要体现在基于泛洪的第二代P2P网络中当网络变得很大时,系统的搜索/回答率会变得很低。为了解决该问题,代表基于层次的第三代p2p系统应运而生</li>
+</ul>
+<p>DHT：根据KID找VID（实际标识了具体某台机器）</p>
+<h2 id="网格计算"><a href="#网格计算" class="headerlink" title="网格计算"></a>网格计算</h2>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -422,16 +567,15 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-        
           
-            <div class="post-nepre full next">
+            <div class="post-nepre full previous">
           
-            <a href="/2021/09/07/Spring-Security-1-begin/" rel="next">
+            <a href="/2021/09/07/Spring-Security-1-begin/" rel="prev">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
               <span class="label">
-              Next Post</span>
+              Previous Post</span>
               <div class="info">
                 <h3>
                 Spring Security(1)：begin</h3>
@@ -439,6 +583,7 @@
               </div>
             </a>
           </div>
+        
         
       </section>
       
@@ -458,16 +603,16 @@
 
       <section class="author-profile">
         <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <a href="icecens.github.io" class="profile gravatar"><img src="https://wx1.sinaimg.cn/large/006bYVyvgy1ftand2qurdj303c03cdfv.jpg" itemprop="image" alt="Icecens" height="70" width="70"></a>
           <div class="meta">
             <span class="title">Author</span>
             <h3 itemprop="name">
-            <a href="" itemprop="url" rel="author"></a>
+            <a href="icecens.github.io" itemprop="url" rel="author">Icecens</a>
             </h3>
           </div>
         </div>
         <hr>
-        <p><i class="iconfont icon-write"></i></p>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
       </section>
     </main><!-- #main -->
   </div><!-- #primary -->

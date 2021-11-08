@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Hello World | Icecens&#39; blog</title>
+  <title itemprop="name">Spring Security(1)：begin | Icecens&#39; blog</title>
   
     <link rel="shortcut icon" href="http://raw.githubusercontent.com/Icecens/ImageHost/main/misc/yy-avatar.jpeg">
   
@@ -374,26 +374,85 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
           <header class="entry-header">
-            <h1 class="entry-title">Hello World</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2021-10-19&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+            <h1 class="entry-title">Spring Security(1)：begin</h1>
+            <p class="entry-census">Icecens&nbsp;·&nbsp;2021-9-7&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
 
             <hr>
           </header>
         
         <div class="entry-content">
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+          <p>web应用的安全性、安全框架两大功能</p>
+<ul>
+<li><p>用户认证：系统判断用户是否能登录</p>
+</li>
+<li><p>用户授权：系统判断用户是否有某操作权限</p>
+</li>
+</ul>
+<p>security比shiro强大、重量级</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>导包以后访问该应用就需要登录了（ip+端口对应就需要，也就是任何controller都需要登录），默认用户名user，密码每次启动都会生成</p>
+<p>需要做的其实就是：处理logout返回结果</p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><h3 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h3><p>ss本质是一个过滤器链，启动时可以看到；每个过滤器都会执行dofilter方法，放行后才可进入下一个过滤器，这就是过滤器链。具体过滤器举例略</p>
+<h3 id="加载过程"><a href="#加载过程" class="headerlink" title="加载过程"></a>加载过程</h3><p>Springboot自动配置ss，如果用spring会比较麻烦要自己配置。其他略</p>
+<h3 id="两个重要接口"><a href="#两个重要接口" class="headerlink" title="两个重要接口"></a>两个重要接口</h3><p>UserDetailsService接口：什么都不配置时，账号默认、密码自动生成，实际项目中是在数据库中查询，所以要自定义逻辑来控制用户认证，只需实现该接口即可。即在里面写查数据库的过程，返回User对象</p>
+<ul>
+<li>UsernamePasswordAuthenticationFilter类：用于接收post请求提交过来的用户名密码，若无则用默认的；所以需要写一个过滤器继承这个类，重写它的3个方法</li>
+</ul>
+<p>PasswordEncoder接口：加密密码的接口，ss只认这种方式</p>
+<h2 id="web权限方案"><a href="#web权限方案" class="headerlink" title="web权限方案"></a>web权限方案</h2><h3 id="用户认证：设置用户名密码"><a href="#用户认证：设置用户名密码" class="headerlink" title="用户认证：设置用户名密码"></a>用户认证：设置用户名密码</h3><p>可通过 配置文件、配置类、自定义编写实现类 的方式实现</p>
+<p>配置文件就是在.yml中改，配置类就是自己写一个config类。自定义编写实现类就是把查数据库的类也自己实现</p>
+<h4 id="自定义实现类"><a href="#自定义实现类" class="headerlink" title="自定义实现类"></a>自定义实现类</h4><p>两步 创建配置类 编写实现类</p>
+<h3 id="用户授权"><a href="#用户授权" class="headerlink" title="用户授权"></a>用户授权</h3><h4 id="自定义登录页面-及-认证选择"><a href="#自定义登录页面-及-认证选择" class="headerlink" title="自定义登录页面 及 认证选择"></a>自定义登录页面 及 认证选择</h4><p>认证选择：有些页面需要登录才能访问，有些不需要</p>
+<p>均只需要在配置类中配置一下即可</p>
+<h4 id="基于权限和角色的访问控制"><a href="#基于权限和角色的访问控制" class="headerlink" title="基于权限和角色的访问控制"></a>基于权限和角色的访问控制</h4><p>hasAuthority方法针对单个权限控制</p>
+<p>hasAnyAuthority多个权限</p>
+<p>hasRole用法差不多，但是在UserDetailService实现类中要给role的本名加上ROLE_，比如config中role设置为sale，实现类中则为ROLE_role</p>
+<p>hasAnyRole略</p>
+<h4 id="自定义403页面"><a href="#自定义403页面" class="headerlink" title="自定义403页面"></a>自定义403页面</h4><p>也是配置类中配一下，.exceptionHandling().accessDeniedPage(“/myunauth.html”)</p>
+<h4 id="注解的使用"><a href="#注解的使用" class="headerlink" title="注解的使用"></a>注解的使用</h4><p>想使用这些注解，要先在启动类中用该注解来开启security注解功能</p>
+<ol>
+<li><p>@Secured({“ROLE_normal”,”ROLE_admin”})</p>
+<p>启动类中开启@EnableGlobalMethodSecurity(securedEnabled=true)</p>
+<p>加在controller方法中，若用户具有某角色则可访问该方法（这也体现了基于角色控制用得比基于权限控制多）（<strong>可以直接加在controller类中吗？？</strong>）</p>
+</li>
+<li><p>@PreAuthorize 和 @PostAuthorize</p>
+<p>启动类中开启@EnableGlobalMethodSecurity(prePostEnabled=true)</p>
+<p>进入方法<strong>前/后</strong>的权限验证（基于权限和角色都可以）</p>
+</li>
+<li><p>@PreFilter 和 @PostFilter</p>
+<p>数据过滤</p>
+</li>
+</ol>
+<h3 id="用户注销"><a href="#用户注销" class="headerlink" title="用户注销"></a>用户注销</h3><p>http.logout().logouturl(“/logout”).logoutSuccessUrl(“/test/hello”).permitAll();</p>
+<h3 id="自动登录（xx天内免登录）"><a href="#自动登录（xx天内免登录）" class="headerlink" title="自动登录（xx天内免登录）"></a>自动登录（xx天内免登录）</h3><p>cookie技术也能实现，缺点：由于是客户端存cookie，涉密信息（密码等）也会存到浏览器中<br>所以用ss框架中的机制实现</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>也用到了cookie，</p>
+<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><p>是一个跨域认证解决方案，实质是一种特殊的token，三个部分组成（前两个用base64编码）</p>
+<ul>
+<li>Header（头部）</li>
+<li>Payload（负载）</li>
+<li>Signature（签名）</li>
+</ul>
+<p>jwt就是一个字符串 Header.Payload.Signature</p>
+<h2 id="hrtms-log-车队项目记录"><a href="#hrtms-log-车队项目记录" class="headerlink" title="hrtms-log 车队项目记录"></a>hrtms-log 车队项目记录</h2><p>（发现自己很多次没有重新启动apigateway）</p>
+<p>前提：8100用不了9002那种filter的跨域配置，用的是webadapter那种</p>
+<ul>
+<li>如果8100和9002都配置跨域，那么只有9002处理一次请求，但cors头部会多一个allow-origin字段</li>
+<li>如果8100有，9002没有，结果是请求都不报错，但是前端报错、弹出error，并且尝试重定向到security自带的login页面（8100端口），也就是login了两次，此时如果输入id和密码，后端报错：<br><code>... Unrecognized token &#39;userId&#39;: was expecting ...</code></li>
+</ul>
+<p>上述8100中均在securityconfig中加入了跨域配置</p>
+<ul>
+<li>如果8100连这个也去掉，也就是完全不考虑跨域配置，那么也会login两次，第二次是8100、security自带的login页面（因为是get请求）；但这时是有userinfo的get请求的，但是状态码302也就是被security重定向了，可能是没放权限<ul>
+<li>先permitall试试，这次只报了一个错：<code>某些 Cookie 滥用推荐的“SameSite“属性</code>，但没法跳转。接下来postman调试权限部分，跨域彻底解决要整合时再做</li>
+</ul>
+</li>
+</ul>
+<p><strong>收获待项目结束后再补充！！</strong></p>
+<p><img src="https://raw.githubusercontent.com/Icecens/ImageHost/main/img/202109181959422.png" alt="image-20210918195914358"></p>
+<p>要搞懂这个什么意思</p>
+<p><img src="https://raw.githubusercontent.com/Icecens/ImageHost/main/img/202109182011310.png" alt></p>
+<p>这个又是什么鬼</p>
+<p><code>Data truncation: Data too long for column &#39;xxx&#39; at row 1</code>：varchar()太小了</p>
+<p><img src="https://raw.githubusercontent.com/Icecens/ImageHost/main/img/202109182243997.png" alt="image-20210918224315872"></p>
+<p>post请求要带参数</p>
 
         </div>
         <!-- .entry-content -->
@@ -422,11 +481,28 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/10/19/hello-world/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                Hello World</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
         
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half next">
           
-            <a href="/2021/09/07/Spring-Security-1-begin/" rel="next">
+            <a href="/2021/09/07/软件设计模式与体系结构/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
@@ -434,7 +510,7 @@
               Next Post</span>
               <div class="info">
                 <h3>
-                Spring Security(1)：begin</h3>
+                软件设计模式与体系结构</h3>
                 <hr>
               </div>
             </a>
@@ -458,16 +534,16 @@
 
       <section class="author-profile">
         <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <a href="icecens.github.io" class="profile gravatar"><img src="https://wx1.sinaimg.cn/large/006bYVyvgy1ftand2qurdj303c03cdfv.jpg" itemprop="image" alt="Icecens" height="70" width="70"></a>
           <div class="meta">
             <span class="title">Author</span>
             <h3 itemprop="name">
-            <a href="" itemprop="url" rel="author"></a>
+            <a href="icecens.github.io" itemprop="url" rel="author">Icecens</a>
             </h3>
           </div>
         </div>
         <hr>
-        <p><i class="iconfont icon-write"></i></p>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
       </section>
     </main><!-- #main -->
   </div><!-- #primary -->
